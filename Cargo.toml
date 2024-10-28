@@ -7,3 +7,10 @@ edition = "2021"
 [dependencies]
 bracket-lib = "~0.8.1"
 legion = "=0.3.1"
+
+[profile.release]
+opt-level = 3  # 设置优化等级为 3
+debug = false  # 禁用调试信息
+lto = true     # 启用链接时优化 (Link Time Optimization)
+strip = true   # 移除符号信息
+codegen-units = 1  # 设置代码生成单元大小
