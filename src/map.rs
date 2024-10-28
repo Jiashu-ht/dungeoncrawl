@@ -52,13 +52,13 @@ impl Map {
     }
 
     /// 如果点在地图中则返回其瓦片向量索引
-    /// 
+    ///
     /// # Examples
     /// ```
     /// let map = Map::new();
     /// let in_map = Point::new(1, 1);
     /// let out_map = Point::new(-1, -1);
-    /// 
+    ///
     /// assert_eq!(map.try_idx(&in_map), Some(map_point_idx(&in_map)));
     /// assert_eq!(map.try_idx(&out_map), None);
     /// ```
@@ -69,7 +69,7 @@ impl Map {
         Some(map_point_idx(point))
     }
 
-    /// 将地图渲染到界面上
+    /// 将map渲染到界面上
     pub fn render(&self, ctx: &mut BTerm) {
         for y in 0..SCREEN_HEIGHT {
             for x in 0..SCREEN_WIDTH {
