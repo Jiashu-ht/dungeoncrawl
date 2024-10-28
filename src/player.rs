@@ -21,7 +21,7 @@ impl Player {
     }
 
     /// 更新内部状态
-    /// 
+    ///
     /// 根据按键方向更新位置
     #[rustfmt::skip]
     pub fn update(&mut self, ctx: &mut BTerm, map: &Map) {
@@ -34,7 +34,7 @@ impl Player {
                 _ => Point::zero()
             };
             let new_position = self.position + delta;
-            if map.can_enter_tile(&self.position) {
+            if map.can_enter_tile(&new_position) {
                 self.position = new_position;
             }
         }
