@@ -82,7 +82,7 @@ impl Map {
     /// assert_eq!(map.in_bounds(&out_map), false);
     /// ```
     pub fn in_bounds(&self, point: &Point) -> bool {
-        point.x >= 0 && point.x <= SCREEN_WIDTH && point.y >= 0 && point.y <= SCREEN_HEIGHT
+        point.x >= 0 && point.x < SCREEN_WIDTH && point.y >= 0 && point.y < SCREEN_HEIGHT
     }
 
     /// 判断能否进入瓦片
