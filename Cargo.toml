@@ -6,3 +6,7 @@ edition = "2021"
 
 [dependencies]
 bracket-lib = "~0.8.1"
+
+[[bin]]
+name = "DungeonCrawler"
+path = "src/main.rs"
