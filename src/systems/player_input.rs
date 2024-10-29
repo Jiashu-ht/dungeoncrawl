@@ -8,21 +8,25 @@ pub fn player_input(
     commands: &mut CommandBuffer,
     #[resource] key: &Option<VirtualKeyCode>,
     #[resource] turn_state: &mut TurnState,
-) 
-{
-    let mut players = <(Entity, &Point)>::query()
-        .filter(component::<Player>());
+) {
+    let mut players = <(Entity, &Point)>::query().filter(component::<Player>());
     if let Some(kc) = *key {
         let delta = match kc {
-            VirtualKeyCode::Left    | VirtualKeyCode::A => Point::new(-1, 0),
-            VirtualKeyCode::Right   | VirtualKeyCode::D => Point::new(1, 0),
-            VirtualKeyCode::Up      | VirtualKeyCode::W => Point::new(0, -1),
-            VirtualKeyCode::Down    | VirtualKeyCode::S => Point::new(0, 1),
+            VirtualKeyCode::Left | VirtualKeyCode::A => Point::new(-1, 0),
+            VirtualKeyCode::Right | VirtualKeyCode::D => Point::new(1, 0),
+            VirtualKeyCode::Up | VirtualKeyCode::W => Point::new(0, -1),
+            VirtualKeyCode::Down | VirtualKeyCode::S => Point::new(0, 1),
             _ => Point::zero(),
         };
         players.iter(ecs).for_each(|(entity, pos)| {
             let destination = *pos + delta;
-            commands.push(((), WantToMove {entity: *entity, destination}));
+            commands.push((
+                (),
+                WantToMove {
+                    entity: *entity,
+                    destination,
+                },
+            ));
         });
         *turn_state = TurnState::PlayerTurn;
     }
